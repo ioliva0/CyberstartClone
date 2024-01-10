@@ -5,19 +5,32 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
+
 import time
 import random
 
+import base64
+
+import os
+
+path = "/home/cyber/cyberstart/CyberstartClone/src/"
+
 #this module's fucked on mac use linux or windows
 #hotkeys are different anyway so it's a good idea no matter what
-import keyboard
+from pynput.keyboard import Key, Controller
 
-profile = webdriver.firefox.options.Options()
-profile.set_preference("browser.download.folderList", 2)
-profile.set_preference("browser.download.dir", "~/CyberstartClone/src/")
-profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/x-gzip")
+keyboard_controller = Controller()
 
-driver = webdriver.Firefox(profile)
+firefox_profile = FirefoxProfile()
+options = Options()
+options.set_preference("browser.download.folderList", 2)
+options.set_preference("browser.download.dir", path)
+options.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/x-gzip")
+options.profile = FirefoxProfile()
+
+driver = webdriver.Firefox(options)
 
 #driver.Manage().Window.Maximize(); 
 driver.maximize_window()
@@ -25,7 +38,7 @@ driver.maximize_window()
 def waitFor(PID : tuple, time : int =10):
     wait = WebDriverWait(driver, time)
     object = wait.until(EC.presence_of_element_located(PID))
-    return object    
+    return object
 
 def alert_not_present():
     return not EC.alert_is_present()
@@ -35,7 +48,9 @@ password = "Kevinharveyiscool101!"
 
 driver.get("https://play.cyberstart.com/sign-in")
 
-waitFor((By.ID, "ccc-notify-accept")).click()
+accept_cookies = waitFor((By.ID, "ccc-notify-accept"))
+time.sleep(0.2)
+accept_cookies.click()
 
 emailElem = driver.find_element(By.ID, "email")
 emailElem.send_keys(email)
@@ -77,11 +92,26 @@ for link in links:
 
     time.sleep(random.randrange(3, 4) / 4.0)
 
-    keyboard.press_and_release("windows+s")
+    keyboard_controller.press(Key.ctrl)
+    keyboard_controller.press("s")
+    keyboard_controller.release("s")
+    keyboard_controller.release(Key.ctrl)
 
-    time.sleep(random.randrange(3, 4) / 4.0)
+    time.sleep(random.randrange(7, 8) / 4.0)
 
-    keyboard.press_and_release("enter")
+
+    link_encoded = base64.b64encode(link.encode()).decode()
+
+    os.mkdirs("/home/cyber/cyberstart/CyberstartClone/src/" + link_encoded)
+
+    for character in link_encoded:
+        keyboard_controller.press(character)
+        time.sleep(0.01)
+        keyboard_controller.release(character)
+        time.sleep(0.01)
+
+    keyboard_controller.press(Key.enter)
+    keyboard_controller.release(Key.enter)
 
     time.sleep(random.randrange(3, 4) / 4.0)
 

@@ -1,0 +1,19 @@
+1704870215305	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilesi9Cik"
+console.error: Enterprise Policies: 
+  Error parsing JSON file: SyntaxError: JSON.parse: expected double-quoted property name at line 16 column 5 of the JSON data
+1704870215712	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilesi9Cik/search.json.mozlz4", (void 0)))
+1704870217635	Marionette	INFO	Listening on port 46549
+1704870217732	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://player.vimeo.com/video/617921252?h=b43713db29, line 107: unreachable code after return statement
+JavaScript warning: https://player.vimeo.com/video/617921252?h=b43713db29, line 107: unreachable code after return statement
+JavaScript warning: https://player.vimeo.com/video/617921252?h=b43713db29, line 107: unreachable code after return statement
+JavaScript warning: https://player.vimeo.com/video/617921252?h=b43713db29, line 107: unreachable code after return statement
+Running Firefox as root in a regular user's session is not supported.  ($XAUTHORITY is /home/cyber/.Xauthority which is owned by cyber.)
+Running Firefox as root in a regular user's session is not supported.  ($XAUTHORITY is /home/cyber/.Xauthority which is owned by cyber.)
+[GFX1-]: Unrecognized feature VIDEO_OVERLAY
+1704872180301	Marionette	INFO	Stopped listening on port 46549
+JavaScript error: resource:///modules/Interactions.jsm, line 209: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
