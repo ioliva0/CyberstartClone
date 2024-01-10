@@ -100,18 +100,19 @@ for link in links:
     time.sleep(random.randrange(7, 8) / 4.0)
 
 
-    link_encoded = base64.b64encode(link.encode()).decode()
+    page_code = link.split("field-manual/")[1].split("?")[0]
 
-    os.mkdirs("/home/cyber/cyberstart/CyberstartClone/src/" + link_encoded)
-
-    for character in link_encoded:
+    for character in page_code:
         keyboard_controller.press(character)
         time.sleep(0.01)
         keyboard_controller.release(character)
         time.sleep(0.01)
 
-    keyboard_controller.press(Key.enter)
-    keyboard_controller.release(Key.enter)
+    for i in range(10):
+        keyboard_controller.press(Key.enter)
+        time.sleep(0.1)
+        keyboard_controller.release(Key.enter)
+        time.sleep(0.1)
 
     time.sleep(random.randrange(3, 4) / 4.0)
 
